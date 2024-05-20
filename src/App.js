@@ -7,6 +7,7 @@ import Ranking from './components/Ranking';
 import Register from './components/Register';
 import Login from './components/Login';
 import { AuthProvider } from './context/AuthContext';
+import './App.css';  // 引入CSS文件
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/submit/:id" element={<Submit />} />
           <Route path="/results/:id" element={<Results />} />
-          <Route path="/rankings" element={<Ranking />} />
+          <Route path="/rankings/:problemId" element={<Ranking />} /> {/* 更新路由路径 */}
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Routes>

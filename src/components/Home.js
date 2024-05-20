@@ -7,6 +7,8 @@ function Home() {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
   const [problems, setProblems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     if (!user) {
@@ -18,8 +20,22 @@ function Home() {
     axios.get('/api/problems')
       .then(response => {
         setProblems(response.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        setError('Failed to fetch problems');
+        setLoading(false);
+        console.error('There was an error fetching the problems!', error);
       });
   }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
     <div>
@@ -27,14 +43,23 @@ function Home() {
       {user ? (
         <>
           <button onClick={logout}>Logout</button>
-          <ul>
-            {problems.map(problem => (
-              <li key={problem.id}>
-                <Link to={`/submit/${problem.id}`}>{problem.title}</Link>
-              </li>
-            ))}
-          </ul>
-          <Link to="/rankings">View Overall Rankings</Link>
+          {problems.length > 0 ? (
+            <ul>
+              {problems.map(problem => (
+                <li key={problem.id} style={{ marginBottom: '20px' }}>
+                  <div>
+                    <strong>{problem.title}</strong>
+                  </div>
+                  <div>
+                    <Link to={`/submit/${problem.id}`} style={{ marginRight: '10px' }}>Submit Your Prompt</Link>
+                    <Link to={`/rankings/${problem.id}`}>View Rankings</Link>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No problems available</p>
+          )}
         </>
       ) : (
         <>
