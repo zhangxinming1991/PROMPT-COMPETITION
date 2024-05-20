@@ -1,0 +1,70 @@
+/* Login.css */
+.login-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .login-box {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .login-box h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .login-box label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .login-box input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .login-box button {
+    width: 100%;
+    padding: 10px;
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .login-box button:hover {
+    background: #0056b3;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+  
+  .login-box p {
+    margin-top: 20px;
+  }
+  
+  .login-box a {
+    color: #007BFF;
+  }
+  
+  .login-box a:hover {
+    text-decoration: underline;
+  }
+  

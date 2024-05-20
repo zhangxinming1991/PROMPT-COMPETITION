@@ -1,38 +1,41 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
+import '../Login.css'; // 引入自定义的CSS文件
 
 function Login() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(''); // 添加状态变量来存储错误消息
+  const [error, setError] = useState('');
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setError(''); // 清除之前的错误消息
-    login(email, password)
+    setError('');
+    login(username, password)
       .then(() => {
-        navigate('/'); // 登录成功后导航到主页
+        navigate('/');
       })
       .catch(error => {
-        setError(error.response ? error.response.data.message : error.message); // 设置错误消息
+        setError(error.response ? error.response.data.message : error.message);
       });
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Email:</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        <label>Password:</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        <button type="submit">Login</button>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>} {/* 显示错误消息 */}
-      <p>If you don't have an account, please <Link to="/register">register here</Link>.</p>
+    <div className="login-container" style={{ backgroundImage: "url('/login_2.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="login-box">
+        <h1>Login</h1>
+        <form onSubmit={handleSubmit}>
+          <label>Username:</label>
+          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+          <label>Password:</label>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <button type="submit">Login</button>
+        </form>
+        {error && <p className="error-message">{error}</p>}
+        <p>If you don't have an account, please <Link to="/register">register here</Link>.</p>
+      </div>
     </div>
   );
 }

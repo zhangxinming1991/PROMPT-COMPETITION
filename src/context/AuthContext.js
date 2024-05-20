@@ -21,11 +21,10 @@ export const AuthProvider = ({ children }) => {
       });
   }, []);
 
-  const login = (email, password) => {
-    return axios.post('/api/login', { email, password })
+  const login = (username, password) => {
+    return axios.post('/api/login', { username, password })
       .then(response => {
         setUser(response.data.user);
-        return response.data;
       });
   };
 
