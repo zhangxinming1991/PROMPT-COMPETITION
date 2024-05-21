@@ -91,7 +91,9 @@ function Submit() {
     <div className="submit-container">
       <button className="back-home-button" onClick={() => navigate('/')}>Back to Home</button> {/* 添加返回首页按钮 */}
       <h1>{problem ? problem.title : 'Loading...'}</h1>
-      <p>{problem ? problem.description : 'Loading...'}</p>
+      <div className="problem-description">
+        {problem ? problem.description : 'Loading...'}
+      </div>
       <form onSubmit={handleSubmit}>
         <textarea
           value={prompt}
@@ -99,6 +101,7 @@ function Submit() {
           rows="10"
           cols="50"
           required
+          placeholder="请在这里输入你的Prompt" // 添加placeholder属性
         />
         <button type="submit">Submit</button>
       </form>
