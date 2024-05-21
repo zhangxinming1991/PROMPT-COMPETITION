@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import '../Login.css'; // 引入自定义的CSS文件
@@ -9,6 +9,11 @@ function Login() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
+
+  useEffect(() => {
+    // 在组件挂载时将滚动条设置为最右侧和最下侧
+    window.scrollTo({ left: document.body.scrollWidth, top: document.body.scrollHeight, behavior: 'smooth' });
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();

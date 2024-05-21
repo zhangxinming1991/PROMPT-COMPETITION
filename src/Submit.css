@@ -1,0 +1,48 @@
+/* Submit.css */
+.submit-container {
+    position: relative;
+    padding: 20px;
+  }
+  
+  .back-home-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .back-home-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .refresh-button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .refresh-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .table-header h2 {
+    margin: 0;
+  }
+  

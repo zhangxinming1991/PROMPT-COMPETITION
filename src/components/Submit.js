@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'; // 引入 useNavigate
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthContext from '../context/AuthContext';
+import '../Submit.css'; // 引入自定义的CSS文件
 
 function Submit() {
   const { id } = useParams();
@@ -87,7 +88,8 @@ function Submit() {
   };
 
   return (
-    <div>
+    <div className="submit-container">
+      <button className="back-home-button" onClick={() => navigate('/')}>Back to Home</button> {/* 添加返回首页按钮 */}
       <h1>{problem ? problem.title : 'Loading...'}</h1>
       <p>{problem ? problem.description : 'Loading...'}</p>
       <form onSubmit={handleSubmit}>
@@ -100,10 +102,10 @@ function Submit() {
         />
         <button type="submit">Submit</button>
       </form>
-      <button onClick={() => manualFetchHistory(currentPage)}>Refresh Submission History</button>
-      <button onClick={() => navigate('/')}>Back to Home</button> {/* 添加返回首页按钮 */}
-      <ToastContainer />
-      <h2>Submission History</h2>
+      <div className="table-header">
+        <h2>Submission History</h2>
+        <button className="refresh-button" onClick={() => manualFetchHistory(currentPage)}>Refresh</button>
+      </div>
       {history.length > 0 ? (
         <div>
           <table>
@@ -147,6 +149,7 @@ function Submit() {
       ) : (
         <p>No submissions yet</p>
       )}
+      <ToastContainer />
     </div>
   );
 }

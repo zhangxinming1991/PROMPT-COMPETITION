@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext';
+import '../Home.css'; // 引入自定义的CSS文件
 
 function Home() {
   const { user, logout } = useContext(AuthContext);
@@ -38,11 +39,11 @@ function Home() {
   }
 
   return (
-    <div>
+    <div className="home-container">
       <h1>Prompt Competition</h1>
       {user ? (
         <>
-          <button onClick={logout}>Logout</button>
+          <button className="logout-button" onClick={logout}>Logout</button>
           {problems.length > 0 ? (
             <ul>
               {problems.map(problem => (
