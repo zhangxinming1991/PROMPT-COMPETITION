@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '../Rankings.css'; // 引入自定义的CSS文件
 
 function Rankings() {
   const { problemId } = useParams();
@@ -50,13 +51,24 @@ function Rankings() {
   };
 
   return (
-    <div>
+    <div className="rankings-container">
+      <button className="rankings-back-home-button" onClick={() => navigate('/')}>Back to Home</button>
       <h1>Rankings</h1>
-      <button onClick={() => navigate('/')}>Back to Home</button> {/* 添加返回首页按钮 */}
-      <button onClick={() => manualFetchRankings(currentPage)}>Refresh Rankings</button>
+      <div className="rankings-podium-container">
+        {rankings.slice(0, 3).map((item, index) => (
+          <div key={item.id} className={`rankings-podium-place rankings-place-${index + 1}`}>
+            <div className="rankings-podium-rank">{index + 1}</div>
+            <div className="rankings-podium-user">{item.username}</div>
+            <div className="rankings-podium-score">{item.score}</div>
+          </div>
+        ))}
+      </div>
       <ToastContainer />
       {rankings.length > 0 ? (
-        <div>
+        <div className="rankings-table-container">
+          <div className="rankings-table-header">
+            <button className="rankings-refresh-button" onClick={() => manualFetchRankings(currentPage)}>Refresh Rankings</button>
+          </div>
           <table>
             <thead>
               <tr>
@@ -72,7 +84,6 @@ function Rankings() {
                   <td>{index + 1 + (currentPage - 1) * 10}</td>
                   <td>{item.username}</td>
                   <td>{item.score}</td>
-                  {/* <td>{item.created_at}</td> */}
                   <td>{new Date(item.created_at).toLocaleString()}</td>
                 </tr>
               ))}

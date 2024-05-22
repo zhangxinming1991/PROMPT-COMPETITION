@@ -4,7 +4,7 @@
   padding: 20px;
 }
 
-.back-home-button {
+.submit-back-home-button {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -17,18 +17,28 @@
   font-size: 16px;
 }
 
-.back-home-button:hover {
+.submit-back-home-button:hover {
   background-color: #0056b3;
 }
 
-.table-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+.submit-table-container {
+  position: relative;
+  margin-top: 20px; /* 确保容器与表单有一定的距离 */
 }
 
-.refresh-button {
+.submit-table-header {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  top: -40px;
+  right: 0;
+}
+
+.submit-table-title {
+  margin-bottom: 0px;
+}
+
+.submit-refresh-button {
   padding: 10px 20px;
   background-color: #007BFF;
   color: white;
@@ -38,15 +48,11 @@
   font-size: 16px;
 }
 
-.refresh-button:hover {
+.submit-refresh-button:hover {
   background-color: #0056b3;
 }
 
-.table-header h2 {
-  margin: 0;
-}
-
-.problem-description {
+.submit-problem-description {
   white-space: pre-line; /* 确保换行符显示为实际的换行 */
   margin-bottom: 20px;
 }

@@ -1,0 +1,118 @@
+/* Rankings.css */
+.rankings-container {
+  position: relative;
+  padding: 20px;
+}
+
+.rankings-back-home-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.rankings-back-home-button:hover {
+  background-color: #0056b3;
+}
+
+.rankings-table-container {
+  position: relative;
+}
+
+.rankings-table-header {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  top: -40px;
+  right: 0;
+}
+
+.rankings-refresh-button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.rankings-refresh-button:hover {
+  background-color: #0056b3;
+}
+
+.rankings-podium {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 20px 0;
+}
+
+.rankings-podium-place {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0; /* 去掉margin */
+  padding: 10px;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+.rankings-podium-rank {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.rankings-podium-user {
+  font-size: 18px;
+}
+
+.rankings-podium-score {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.rankings-place-1 {
+  background-color: gold;
+  height: 200px;
+  width: 100px;
+}
+
+.rankings-place-2 {
+  background-color: silver;
+  height: 150px;
+  width: 100px;
+}
+
+.rankings-place-3 {
+  background-color: #cd7f32; /* 铜色 */
+  height: 100px;
+  width: 100px;
+}
+
+.rankings-podium-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center; /* 调整为居中对齐 */
+  gap: 5px; /* 设置较小的间距 */
+}
+
+.rankings-podium-place:nth-child(1) {
+  order: 2; /* 将第一名放在中间 */
+}
+
+.rankings-podium-place:nth-child(2) {
+  order: 3; /* 将第二名放在右边 */
+}
+
+.rankings-podium-place:nth-child(3) {
+  order: 1; /* 将第三名放在左边 */
+}

@@ -74,7 +74,8 @@ function Submit() {
         fetchHistory();
       })
       .catch(error => {
-        toast.error('There was an error submitting the prompt!', {
+        const errorMessage = error.response?.data?.message || 'There was an error submitting the prompt!';
+        toast.error(errorMessage, {
           autoClose: 1500, // 设置提示框停留时间为2秒
           hideProgressBar: false, // 显示进度条
           progressClassName: 'faster-progress' // 自定义进度条样式
@@ -89,9 +90,9 @@ function Submit() {
 
   return (
     <div className="submit-container">
-      <button className="back-home-button" onClick={() => navigate('/')}>Back to Home</button> {/* 添加返回首页按钮 */}
+      <button className="submit-back-home-button" onClick={() => navigate('/')}>Back to Home</button> {/* 添加返回首页按钮 */}
       <h1>{problem ? problem.title : 'Loading...'}</h1>
-      <div className="problem-description">
+      <div className="submit-problem-description">
         {problem ? problem.description : 'Loading...'}
       </div>
       <form onSubmit={handleSubmit}>
@@ -105,51 +106,54 @@ function Submit() {
         />
         <button type="submit">Submit</button>
       </form>
-      <div className="table-header">
-        <h2>Submission History</h2>
-        <button className="refresh-button" onClick={() => manualFetchHistory(currentPage)}>Refresh</button>
-      </div>
-      {history.length > 0 ? (
-        <div>
-          <table>
-            <thead>
-              <tr>
-                <th>Submission ID</th>
-                <th>Prompt</th>
-                <th>Score</th>
-                <th>Status</th>
-                <th>Submitted At</th>
-                <th>Last Updated</th>
-              </tr>
-            </thead>
-            <tbody>
-              {history.map((item) => (
-                <tr key={item.id}>
-                  <td>{item.id}</td>
-                  <td>{item.prompt}</td>
-                  <td>{item.score}</td>
-                  <td>{item.status}</td>
-                  <td>{new Date(item.created_at).toLocaleString()}</td>
-                  <td>{new Date(item.updated_at).toLocaleString()}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div>
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-              <button
-                key={page}
-                onClick={() => handlePageChange(page)}
-                disabled={page === currentPage}
-              >
-                {page}
-              </button>
-            ))}
-          </div>
+      
+      <h2 className="submit-table-title">Submission History</h2>
+      <div className="submit-table-container">
+        <div className="submit-table-header">
+          <button className="submit-refresh-button" onClick={() => manualFetchHistory(currentPage)}>Refresh</button>
         </div>
-      ) : (
-        <p>No submissions yet</p>
-      )}
+        {history.length > 0 ? (
+          <div className="submit-table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Submission ID</th>
+                  <th>Prompt</th>
+                  <th>Score</th>
+                  <th>Status</th>
+                  <th>Submitted At</th>
+                  <th>Last Updated</th>
+                </tr>
+              </thead>
+              <tbody>
+                {history.map((item) => (
+                  <tr key={item.id}>
+                    <td>{item.id}</td>
+                    <td>{item.prompt}</td>
+                    <td>{item.score}</td>
+                    <td>{item.status}</td>
+                    <td>{new Date(item.created_at).toLocaleString()}</td>
+                    <td>{new Date(item.updated_at).toLocaleString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <div className="submit-pagination">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                <button
+                  key={page}
+                  onClick={() => handlePageChange(page)}
+                  disabled={page === currentPage}
+                >
+                  {page}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <p>No submissions yet</p>
+        )}
+      </div>
       <ToastContainer />
     </div>
   );
