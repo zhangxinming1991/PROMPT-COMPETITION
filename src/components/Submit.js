@@ -116,7 +116,6 @@ function Submit() {
               <tr>
                 <th>Submission ID</th>
                 <th>Prompt</th>
-                <th>Output</th>
                 <th>Score</th>
                 <th>Status</th>
                 <th>Submitted At</th>
@@ -128,7 +127,6 @@ function Submit() {
                 <tr key={item.id}>
                   <td>{item.id}</td>
                   <td>{item.prompt}</td>
-                  <td>{JSON.stringify(item.output)}</td>
                   <td>{item.score}</td>
                   <td>{item.status}</td>
                   <td>{new Date(item.created_at).toLocaleString()}</td>

@@ -60,13 +60,10 @@ function Rankings() {
           <table>
             <thead>
               <tr>
-                <th>Rank</th>
-                <th>Username</th>
-                <th>Score</th>
-                <th>Prompt</th>
-                <th>Output</th>
-                <th>created_at</th>
-                <th>updated_at</th>
+                <th>排名</th>
+                <th>用户</th>
+                <th>得分</th>
+                <th>提交时间</th>
               </tr>
             </thead>
             <tbody>
@@ -75,10 +72,8 @@ function Rankings() {
                   <td>{index + 1 + (currentPage - 1) * 10}</td>
                   <td>{item.username}</td>
                   <td>{item.score}</td>
-                  <td>{item.prompt}</td>
-                  <td>{JSON.stringify(item.output)}</td>
-                  <td>{item.created_at}</td>
-                  <td>{item.updated_at}</td>
+                  {/* <td>{item.created_at}</td> */}
+                  <td>{new Date(item.created_at).toLocaleString()}</td>
                 </tr>
               ))}
             </tbody>
