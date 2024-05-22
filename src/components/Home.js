@@ -40,20 +40,30 @@ function Home() {
 
   return (
     <div className="home-container">
-      <h1>Prompt Competition</h1>
+      <div className="header">
+        <h1>Prompt Competition</h1>
+        {user && (
+          <div className="user-info-container">
+            <div className="user-info">
+              <p>Welcome, {user.username}!</p>
+              <p>Email: {user.email}</p>
+            </div>
+            <button className="logout-button" onClick={logout}>Logout</button>
+          </div>
+        )}
+      </div>
       {user ? (
         <>
-          <button className="logout-button" onClick={logout}>Logout</button>
           {problems.length > 0 ? (
-            <ul>
+            <ul className="problems-list">
               {problems.map(problem => (
-                <li key={problem.id} style={{ marginBottom: '20px' }}>
+                <li key={problem.id}>
                   <div>
                     <strong>{problem.title}</strong>
                   </div>
                   <div>
-                    <Link to={`/submit/${problem.id}`} style={{ marginRight: '10px' }}>Submit Your Prompt</Link>
-                    <Link to={`/rankings/${problem.id}`}>View Rankings</Link>
+                    <Link to={`/submit/${problem.id}`} className="problem-link">Submit Your Prompt</Link>
+                    <Link to={`/rankings/${problem.id}`} className="problem-link">View Rankings</Link>
                   </div>
                 </li>
               ))}
