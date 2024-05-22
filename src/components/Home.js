@@ -55,19 +55,32 @@ function Home() {
       {user ? (
         <>
           {problems.length > 0 ? (
-            <ul className="problems-list">
-              {problems.map(problem => (
-                <li key={problem.id}>
-                  <div>
-                    <strong>{problem.title}</strong>
-                  </div>
-                  <div>
-                    <Link to={`/submit/${problem.id}`} className="problem-link">Submit Your Prompt</Link>
-                    <Link to={`/rankings/${problem.id}`} className="problem-link">View Rankings</Link>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <table className="problems-table">
+              <thead>
+                <tr>
+                  <th>题目</th>
+                  <th>发布时间</th>
+                  <th>类型</th>
+                  <th>题目作者</th>
+                  <th>实时排名</th>
+                </tr>
+              </thead>
+              <tbody>
+                {problems.map(problem => (
+                  <tr key={problem.id}>
+                    <td>
+                      <Link to={`/submit/${problem.id}`} className="problem-title-link">{problem.title}</Link>
+                    </td>
+                    <td>{new Date(problem.created_at).toLocaleDateString()}</td>
+                    <td>{problem.type}</td>
+                    <td>{problem.author}</td>
+                    <td>
+                      <Link to={`/rankings/${problem.id}`} className="problem-link">View Rankings</Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           ) : (
             <p>No problems available</p>
           )}

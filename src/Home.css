@@ -1,7 +1,8 @@
 .home-container {
   padding: 20px;
-  max-width: 1000px;
+  width: 100%; /* 确保容器宽度为100% */
   margin: 0 auto;
+  box-sizing: border-box; /* 确保 padding 不会影响宽度 */
 }
 
 .header {
@@ -12,11 +13,14 @@
 }
 
 .user-info-container {
-  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* 使用户信息和登出按钮右对齐 */
 }
 
 .user-info {
   margin-bottom: 10px;
+  text-align: right; /* 使用户信息文本右对齐 */
 }
 
 .logout-button {
@@ -33,20 +37,28 @@
   background-color: #0056b3;
 }
 
-.problems-list {
-  list-style-type: none;
-  padding: 0;
+.problems-table {
+  width: 100%; /* 确保表格宽度为100% */
+  border-collapse: collapse;
 }
 
-.problems-list li {
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.problems-table th, .problems-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
-.problems-list li div {
-  margin-bottom: 5px;
+.problems-table th {
+  background-color: #f2f2f2;
+}
+
+.problem-title-link {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.problem-title-link:hover {
+  text-decoration: underline;
 }
 
 .problem-link {
