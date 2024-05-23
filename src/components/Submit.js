@@ -121,6 +121,7 @@ function Submit() {
                   <th>Prompt</th>
                   <th>Score</th>
                   <th>Status</th>
+                  <th>detail</th>
                   <th>Submitted At</th>
                   <th>Last Updated</th>
                 </tr>
@@ -132,6 +133,7 @@ function Submit() {
                     <td>{item.prompt}</td>
                     <td>{item.score}</td>
                     <td>{item.status}</td>
+                    <td>{JSON.stringify(item.output)}</td>
                     <td>{new Date(item.created_at).toLocaleString()}</td>
                     <td>{new Date(item.updated_at).toLocaleString()}</td>
                   </tr>
