@@ -24,3 +24,4 @@ yarn-error.log*
 
 daemon/*
 error.log
+src/config.js
