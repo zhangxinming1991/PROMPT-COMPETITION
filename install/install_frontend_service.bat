@@ -2,7 +2,7 @@
 SET SERVICE_NAME=PromptCompetitionService
 SET WORKING_DIR=D:\MyProject\PROMPT-COMPETITION
 SET SERVE_CMD="D:\MyProject\PROMPT-COMPETITION\node_modules\.bin\serve.cmd"
-SET SERVE_ARGS=-s build -l 3001
+SET SERVE_ARGS=-s build -l 3001 -c serve.json
 SET NSSM_PATH="D:\Program Files\nssm-2.24\nssm-2.24\win64\nssm.exe"
 SET LOG_DIR=D:\applog\frontend_service
 
