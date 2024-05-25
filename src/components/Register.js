@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom'; // 导入 Link
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import config from '../config'; // 引入配置文件
 function Register() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -11,7 +11,7 @@ function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('/api/register', { username, email, password })
+    axios.post(`${config.BASE_URL}/api/register`, { username, email, password }, {withCredentials: true})
       .then(response => {
         toast.success('Registration successful!', {
           autoClose: 2000, // 设置提示框停留时间为2秒

@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthContext from '../context/AuthContext';
 import '../Submit.css'; // 引入自定义的CSS文件
+import config from '../config';
 
 function Submit() {
   const { id } = useParams();
@@ -17,7 +18,7 @@ function Submit() {
   const [totalPages, setTotalPages] = useState(1);
 
   const fetchHistory = useCallback((page = 1) => {
-    return axios.get(`/api/submissions/${id}`, { params: { page, per_page: 10 } })
+    return axios.get(`${config.BASE_URL}/api/submissions/${id}`, { params: { page, per_page: 10 },withCredentials: true })
       .then(response => {
         setHistory(response.data.submissions);
         setCurrentPage(response.data.current_page);
@@ -47,7 +48,7 @@ function Submit() {
   };
 
   useEffect(() => {
-    axios.get(`/api/problems/${id}`)
+    axios.get(`${config.BASE_URL}/api/problems/${id}`, {withCredentials: true})
       .then(response => {
         setProblem(response.data);
       })
@@ -64,7 +65,7 @@ function Submit() {
       console.error('User not logged in');
       return;
     }
-    axios.post(`/api/submit/${id}`, { prompt })
+    axios.post(`${config.BASE_URL}/api/submit/${id}`, { prompt }, {withCredentials: true})
       .then(() => {
         toast.success('Submission successful!', {
           autoClose: 1500, // 设置提示框停留时间为2秒

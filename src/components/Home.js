@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext';
 import '../Home.css'; // 引入自定义的CSS文件
+import config from '../config';
 
 function Home() {
   const { user, logout } = useContext(AuthContext);
@@ -18,7 +19,7 @@ function Home() {
   }, [user, navigate]);
 
   useEffect(() => {
-    axios.get('/api/problems')
+    axios.get(`${config.BASE_URL}/api/problems`, { withCredentials: true })
       .then(response => {
         setProblems(response.data);
         setLoading(false);

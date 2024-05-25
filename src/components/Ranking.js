@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../Rankings.css'; // 引入自定义的CSS文件
+import config from '../config';
 
 function Rankings() {
   const { problemId } = useParams();
@@ -13,7 +14,7 @@ function Rankings() {
   const [totalPages, setTotalPages] = useState(1);
 
   const fetchRankings = useCallback((page = 1) => {
-    return axios.get(`/api/rankings/${problemId}`, { params: { page, per_page: 10 } })
+    return axios.get(`${config.BASE_URL}/api/rankings/${problemId}`, { params: { page, per_page: 10 }, withCredentials: true})
       .then(response => {
         setRankings(response.data.rankings);
         setCurrentPage(response.data.current_page);
